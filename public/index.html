@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza maker</title>
+    <style >
+        .wrapper{
+            border: 1px solid grey; 
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            
+        }
+        .order-preview{
+            border: 3px solid grey;
+            width: 500px; 
+            margin: 10px;
+            padding: 10px;
+        }
+        #Web-Pizza-Project-{
+            border: 3px solid grey;
+            margin: 10px;
+            max-width: 500px;
+        }
+    
+        .order-button{
+            margin: 20px;
+        }
+   
+
+    </style>
+</head>
+<body>
+    <div class="pizza-builder">
+        <div class="options">
+            <div class="wrapper">
+            <div class="order-preview">
+                <div class="selected-items">
+                    <h3>Order preview:</h3>
+                    <div id="selected-base"></div>
+                    <div id="selected-sauce"></div>
+                    <div id="selected-ingredient1"></div>
+                    <div id="selected-ingredient2"></div>
+                    <div>Price: <span id="total-price">0</span>$</div>
+                </div>
+            </div>
+                <img src="../images/img0.png" alt="pizza" id="img" />
+            </div>
+                <div class="order-button">
+                    <button id="order-btn" disabled>ORDER</button>
+                </div>
+                <div class="base-option">
+                    <h3>Base</h3>
+                    <button id="baseBtn1" data-price="5" data-type="base">Thin dough</button>
+                    <button id="baseBtn2" data-price="6" data-type="base">Thick dough</button>
+                    <button id="baseBtn3" data-price="7" data-type="base">Round</button>
+                    <button id="baseBtn4" data-price="8" data-type="base">Square</button>
+                </div>
+
+                <div class="ingredient1-option">
+                    <h3>Ingredient 1</h3>
+                    <button id="ing1Btn1" data-price="1.1" data-type="ingredient1">Meat</button>
+                    <button id="ing1Btn2" data-price="1.2" data-type="ingredient1">Sausage</button>
+                    <button id="ing1Btn3" data-price="1.3" data-type="ingredient1">Cheese</button>
+                    <button id="ing1Btn4" data-price="1.4" data-type="ingredient1">Olives</button>
+                </div>
+                <div class="ingredient2-option">
+                    <h3>Ingredient 2</h3>
+                    <button id="ing2Btn1" data-price="0.5" data-type="ingredient2">Mushrooms</button>
+                    <button id="ing2Btn2" data-price="0.75" data-type="ingredient2">Corn</button>
+                    <button id="ing2Btn3" data-price="1" data-type="ingredient2">Pineapple</button>
+                    <button id="ing2Btn4" data-price="1.25" data-type="ingredient2">Shrimp</button>
+                </div>
+                <div class="sauce-option">
+                    <h3>Sauces</h3>
+                    <button id="sauceBtn1" data-price="1" data-type="sauce">Barbecue</button>
+                    <button id="sauceBtn2" data-price="1.5" data-type="sauce">Alfredo</button>
+                    <button id="sauceBtn3" data-price="2" data-type="sauce">Tomato</button>
+                    <button id="sauceBtn4" data-price="2.5" data-type="sauce">Sweet Chili</button>
+                </div>
+            
+
+
+        </div>
+    </div>
+
+   
+
+    
+</body>
+</html>
