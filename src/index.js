@@ -5,19 +5,19 @@ import img2Link from '../images/img2.png';
 import img3Link from '../images/img3.png';
 import img4Link from '../images/img4.png';
 
-//1.Выбраные эл должны отображаться в области просмотра заказа
+//1.Выбраные эл должны отображаться в области просмотра заказа +
 //  1.2.При клике на эл, он будет удаляться 
+//  1.3.При выборе эл менять картинку +
+//  1.4.Ограничить выбор эл +
 //2.Решить проблему с ценой
-//3.При выборе эл менять картинку
-//4.Ограничить выбор эл
-//5.Кнопка заказать должна быть доступна, после того как во всех четирёх колонках будет выбрано хотя бы по одному эл
-//6.После нажатия на кнопку заказать в консоль должен выведен обьект с информацией о заказе
-//7.С помощью всплывающего окна пользователь должен быть оповещён об успешном формирование заказа
+//3.Кнопка заказать должна быть доступна, после того как во всех четирёх колонках будет выбрано хотя бы по одному эл
+//4.После нажатия на кнопку заказать в консоль должен выведен обьект с информацией о заказе
+//5.С помощью всплывающего окна пользователь должен быть оповещён об успешном формирование заказа
 
 
-//КНОПКА
-//1.Отображение в поле заказа её текста + цена
-//2.Кнопка должна нажиматься один раз
+//КНОПКА +-
+//1.Отображение в поле заказа её текста + цена 
+//2.Кнопка должна нажиматься один раз 
 //  2.1После нажатия кнопки она должна измениться
 //3.При нажатии кнопки должна меняться картинка
 
@@ -45,9 +45,23 @@ const arrBase = [baseBtn1, baseBtn2, baseBtn3, baseBtn4];
 function getOrderBase(btn) {
     btn.addEventListener('click', () => {
         const text = btn.innerText;
-        selectedBaseOrder.append(text);
+        const spanBase = document.createElement('span');
+
+        spanBase.textContent = text + " ";
+        selectedBaseOrder.append(spanBase);
+
         btn.style.color = 'blue';
         pizzaImg.src = images[++imageIndex];
+
+        const baseElFromOrderList = selectedBaseOrder.childNodes[0];
+        baseElFromOrderList.addEventListener('click', () => {
+            baseElFromOrderList.remove();
+            arrBase.forEach((item) => {
+                item.disabled = false;
+            })
+            btn.style.color = 'black';
+            pizzaImg.src = images[--imageIndex];
+        })
 
         arrBase.forEach((item) => {
             item.disabled = true;
@@ -71,9 +85,23 @@ const arrSause = [sauceBtn1, sauceBtn2, sauceBtn3, sauceBtn4];
 function getOrderSause(btn) {
     btn.addEventListener('click', () => {
         const text = btn.innerText;
-        selectedSauseOrder.append(text);
+        const spanSause = document.createElement('span');
+
+        spanSause.textContent = text + " ";
+        selectedSauseOrder.append(spanSause);
+
         btn.style.color = 'blue';
         pizzaImg.src = images[++imageIndex];
+
+        const sauseElFromOrderList = selectedSauseOrder.childNodes[0];
+        sauseElFromOrderList.addEventListener('click', () => {
+            sauseElFromOrderList.remove();
+            arrSause.forEach((item) => {
+                item.disabled = false;
+            })
+            btn.style.color = 'black';
+            pizzaImg.src = images[--imageIndex];
+        })
 
         arrSause.forEach((item) => {
             item.disabled = true;
@@ -101,9 +129,47 @@ const arrIngredients1 = [ing1Btn1, ing1Btn2, ing1Btn3, ing1Btn4];
 function getOrderIndredient1(btn) {
     btn.addEventListener('click', () => {
         const text = btn.innerText;
-        selectedIngredient1Order.append(text + " ");
+        const spanIngredient1 = document.createElement('span');
+
+        spanIngredient1.textContent = text + " ";
+        selectedIngredient1Order.append(spanIngredient1);
+
         btn.style.color = 'blue';
         ++ing1Counter;
+        if (ing1Counter == 1) {
+            pizzaImg.src = images[++imageIndex];
+        }
+
+
+        //Попробовать через toggle
+        const Ingredients1ElFromOrderList = selectedIngredient1Order.firstChild;
+        Ingredients1ElFromOrderList.addEventListener('click', () =>{
+            Ingredients1ElFromOrderList.remove();
+            Ingredients1ElFromOrderList1.remove();
+            btn.style.color = 'black';
+            pizzaImg.src = images[imageIndex--];
+            if (ing1Counter == 1) {
+                pizzaImg.src = images[++imageIndex];
+            }
+            ing1Counter--;
+            arrIngredients1.forEach((item) => {
+            
+                item.disabled = false;
+            
+        })
+            
+        })
+
+
+
+        const Ingredients1ElFromOrderList1 = selectedIngredient1Order.lastChild;
+        Ingredients1ElFromOrderList1.addEventListener("click", () => {
+          Ingredients1ElFromOrderList1.remove();
+          Ingredients1ElFromOrderList.remove();
+        });
+
+
+
 
         arrIngredients1.forEach((item) => {
             if (ing1Counter === 2) {
@@ -132,9 +198,16 @@ const arrIngredients2 = [ing2Btn1, ing2Btn2, ing2Btn3, ing2Btn4];
 function getOrderIndredient2(btn) {
     btn.addEventListener('click', () => {
         const text = btn.innerText;
-        selectedIngredient2Order.append(text + " ");
+        const spanIngredient2 = document.createElement('span');
+
+        spanIngredient2.textContent = text + " ";
+        selectedIngredient2Order.append(spanIngredient2);
+
         btn.style.color = 'blue';
         ++ing2Counter;
+        if (ing2Counter == 1) {
+            pizzaImg.src = images[++imageIndex];
+        }
 
         arrIngredients2.forEach((item) => {
             if (ing2Counter === 2) {
@@ -148,3 +221,35 @@ getOrderIndredient2(ing2Btn1);
 getOrderIndredient2(ing2Btn2);
 getOrderIndredient2(ing2Btn3);
 getOrderIndredient2(ing2Btn4);
+
+
+//Удаление из листа заказов
+
+// Удаление Ingredient1
+selectedIngredient1Order.addEventListener("click", () => {
+    selectedIngredient1Order.innerHTML = '';
+    arrIngredients1.forEach((btn) => {
+      btn.style.color = "black"
+    });
+    pizzaImg.src = images[--imageIndex];
+    arrIngredients1.forEach((item) => {
+      item.disabled = false;   
+    });
+    ing1Counter = 0;
+    console.log("Ing1 counter after remove "+ing1Counter);
+  });
+  
+  
+  // Удаление Ingredient2
+  selectedIngredient2Order.addEventListener("click", () => {
+    selectedIngredient2Order.innerHTML = '';
+    arrIngredients2.forEach((btn) => {
+      btn.style.color = "black"
+    });
+    pizzaImg.src = images[--imageIndex];
+    arrIngredients2.forEach((item) => {
+      item.disabled = false;   
+    });
+    ing2Counter = 0;
+    console.log("Ing2 counter after remove "+ing1Counter);
+  });
