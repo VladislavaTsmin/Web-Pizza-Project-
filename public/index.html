@@ -1,93 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="#">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza maker</title>
-    <style >
-        .wrapper{
-            border: 1px solid grey; 
+    <style>
+        .wrapper {
+            border: 3px solid orange;
             display: flex;
             flex-direction: row;
             justify-content: center;
-            
+            background-color: blanchedalmond;
+            position: relative;
+
         }
-        .order-preview{
-            border: 3px solid grey;
-            width: 500px; 
+
+        .order-preview {
+            border: 1px solid orange;
+            width: 500px;
             margin: 10px;
             padding: 10px;
+            position: relative;
         }
-        #Web-Pizza-Project-{
+
+
+
+        .price {
+            position: absolute;
+            bottom: 0;
+        }
+
+        #Web-Pizza-Project- {
             border: 3px solid grey;
             margin: 10px;
-            max-width: 500px;
+            width: 500px;
         }
-    
-        .order-button{
-            margin: 20px;
-        }
-   
 
+        .order-button {
+            position: absolute;
+            top: 300px;
+            right: 11%;
+            border-radius: 8px;
+            border: 1px solid orange;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .pizza-option {
+            background-color: blanchedalmond;
+            border: 3px orange;
+            padding: 20px;
+            border: 2px solid orange;
+
+        }
+
+        .ingButtonsStartStyle {
+            background-color: #eada99;
+            border: 1px solid #CCCCCC;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+            border-radius: 4px;
+            color: #555555;
+            /* display:block; */
+            width: 120px;
+            margin: 0px auto;
+            font-size: 14px;
+            text-align: center;
+            height: 30px;
+            line-height: 20px;
+            margin-bottom: 10px;
+            padding: 4px 6px;
+            /* vertical-align: middle; */
+            /* text-decoration:none; */
+        }
+
+        .ingButtonsStartStyle:hover,
+        .ingButtonsStartStyle:focus {
+            border-color: rgba(145, 89, 91, 0.8);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(68, 44, 45, 0.8);
+            outline: 0 none;
+        }
+
+        .ingButtonsStartStyle:disabled {
+            background-color: #a4a2a2;
+            color: #CCCCCC;
+            box-shadow: none;
+        }
     </style>
 </head>
+
 <body>
     <div class="pizza-builder">
         <div class="options">
             <div class="wrapper">
-            <div class="order-preview">
-                <div class="selected-items">
-                    <h3>Order preview:</h3>
-                    <div id="selected-base"></div>
-                    <div id="selected-sauce"></div>
-                    <div id="selected-ingredient1"></div>
-                    <div id="selected-ingredient2"></div>
-                    <div>Price: <span id="total-price">0</span>$</div>
+                <div class="order-preview">
+                    <div class="selected-items">
+                        <h3>Order preview:</h3>
+                        <div id="selected-base"></div>
+                        <div id="selected-sauce"></div>
+                        <div id="selected-ingredient1"></div>
+                        <div id="selected-ingredient2"></div>
+                        <div class="price">
+                            <div>Price: <span id="total-price">0</span>$</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
                 <img src="../images/img0.png" alt="pizza" id="img" />
-            </div>
+
                 <div class="order-button">
                     <button id="order-btn" disabled>ORDER</button>
                 </div>
+            </div>
+            <div class="pizza-option">
                 <div class="base-option">
                     <h3>Base</h3>
-                    <button id="baseBtn1" data-price="5" data-type="base">Thin dough</button>
-                    <button id="baseBtn2" data-price="6" data-type="base">Thick dough</button>
-                    <button id="baseBtn3" data-price="7" data-type="base">Round</button>
-                    <button id="baseBtn4" data-price="8" data-type="base">Square</button>
+                    <button id="baseBtn1" data-price="5" class="ingButtonsStartStyle">Thin dough</button>
+                    <button id="baseBtn2" data-price="6" class="ingButtonsStartStyle">Thick dough</button>
+                    <button id="baseBtn3" data-price="7" class="ingButtonsStartStyle">Round</button>
+                    <button id="baseBtn4" data-price="8" class="ingButtonsStartStyle">Square</button>
                 </div>
 
                 <div class="ingredient1-option">
                     <h3>Ingredient 1</h3>
-                    <button id="ing1Btn1" data-price="1.1" data-type="ingredient1">Meat</button>
-                    <button id="ing1Btn2" data-price="1.2" data-type="ingredient1">Sausage</button>
-                    <button id="ing1Btn3" data-price="1.3" data-type="ingredient1">Cheese</button>
-                    <button id="ing1Btn4" data-price="1.4" data-type="ingredient1">Olives</button>
+                    <button id="ing1Btn1" data-price="1" class="ingButtonsStartStyle">Meat</button>
+                    <button id="ing1Btn2" data-price="2" class="ingButtonsStartStyle">Sausage</button>
+                    <button id="ing1Btn3" data-price="3" class="ingButtonsStartStyle">Cheese</button>
+                    <button id="ing1Btn4" data-price="4" class="ingButtonsStartStyle">Olives</button>
                 </div>
                 <div class="ingredient2-option">
                     <h3>Ingredient 2</h3>
-                    <button id="ing2Btn1" data-price="0.5" data-type="ingredient2">Mushrooms</button>
-                    <button id="ing2Btn2" data-price="0.75" data-type="ingredient2">Corn</button>
-                    <button id="ing2Btn3" data-price="1" data-type="ingredient2">Pineapple</button>
-                    <button id="ing2Btn4" data-price="1.25" data-type="ingredient2">Shrimp</button>
+                    <button id="ing2Btn1" data-price="3" class="ingButtonsStartStyle">Mushrooms</button>
+                    <button id="ing2Btn2" data-price="4" class="ingButtonsStartStyle">Corn</button>
+                    <button id="ing2Btn3" data-price="2" class="ingButtonsStartStyle">Pineapple</button>
+                    <button id="ing2Btn4" data-price="4" class="ingButtonsStartStyle">Shrimp</button>
                 </div>
                 <div class="sauce-option">
                     <h3>Sauces</h3>
-                    <button id="sauceBtn1" data-price="1" data-type="sauce">Barbecue</button>
-                    <button id="sauceBtn2" data-price="1.5" data-type="sauce">Alfredo</button>
-                    <button id="sauceBtn3" data-price="2" data-type="sauce">Tomato</button>
-                    <button id="sauceBtn4" data-price="2.5" data-type="sauce">Sweet Chili</button>
+                    <button id="sauceBtn1" data-price="1" class="ingButtonsStartStyle">Barbecue</button>
+                    <button id="sauceBtn2" data-price="2" class="ingButtonsStartStyle">Alfredo</button>
+                    <button id="sauceBtn3" data-price="2" class="ingButtonsStartStyle">Tomato</button>
+                    <button id="sauceBtn4" data-price="3" class="ingButtonsStartStyle">Sweet Chili</button>
                 </div>
-            
+            </div>
+
 
 
         </div>
     </div>
 
-   
 
-    
+
+
 </body>
+
 </html>

@@ -30,8 +30,6 @@ const selectedIngredient2Order = document.getElementById(
 );
 const orderPrise = document.getElementById("total-price");
 
-
-
 const images = [img0Link, img1Link, img2Link, img3Link, img4Link];
 let imageIndex = 0;
 
@@ -48,6 +46,7 @@ const baseBtn3 = document.getElementById("baseBtn3");
 const baseBtn4 = document.getElementById("baseBtn4");
 
 const arrBase = [baseBtn1, baseBtn2, baseBtn3, baseBtn4];
+
 // Получаем заказ базы
 function getOrderBase(btn) {
   btn.addEventListener("click", () => {
@@ -57,35 +56,38 @@ function getOrderBase(btn) {
     spanBase.textContent = text + " ";
     selectedBaseOrder.append(spanBase);
 
-    btn.style.color = "blue";
+    btn.style.color = "yellow";
     pizzaImg.src = images[++imageIndex];
 
     const baseElFromOrderList = selectedBaseOrder.childNodes[0];
+
     // Удаление базы из листа заказов
     baseElFromOrderList.addEventListener("click", () => {
       baseElFromOrderList.remove();
+
       arrBase.forEach((item) => {
         item.disabled = false;
       });
-      btn.style.color = "black";
+      btn.style.color = null;
       pizzaImg.src = images[--imageIndex];
-      totalPrise -=  parseFloat(btn.getAttribute('data-price'));
+      totalPrise -= parseFloat(btn.getAttribute("data-price"));
       orderPrise.innerText = totalPrise;
       finalOrderButton.disabled = true;
+      
     });
 
     arrBase.forEach((item) => {
       item.disabled = true;
+      
     });
-
-     totalPrise += parseFloat(btn.getAttribute('data-price'));
-     orderPrise.innerText = totalPrise;
-     if(imageIndex == 4){
+    totalPrise += parseFloat(btn.getAttribute("data-price"));
+    orderPrise.innerText = totalPrise;
+    if (imageIndex == 4) {
       finalOrderButton.disabled = false;
-     }
+    }
+    finalOrderObject.base = selectedBaseOrder.firstChild.textContent;
   });
 }
-console.log("Base "+imageIndex);
 
 getOrderBase(baseBtn1);
 getOrderBase(baseBtn2);
@@ -108,7 +110,7 @@ function getOrderSause(btn) {
     spanSause.textContent = text + " ";
     selectedSauseOrder.append(spanSause);
 
-    btn.style.color = "blue";
+    btn.style.color = "yellow";
     pizzaImg.src = images[++imageIndex];
     const sauseElFromOrderList = selectedSauseOrder.childNodes[0];
     // Удаление соуса из листа закахов
@@ -117,9 +119,9 @@ function getOrderSause(btn) {
       arrSause.forEach((item) => {
         item.disabled = false;
       });
-      btn.style.color = "black";
+      btn.style.color = null;
       pizzaImg.src = images[--imageIndex];
-      totalPrise -=  parseFloat(btn.getAttribute('data-price'));
+      totalPrise -= parseFloat(btn.getAttribute("data-price"));
       orderPrise.innerText = totalPrise;
       finalOrderButton.disabled = true;
     });
@@ -127,13 +129,13 @@ function getOrderSause(btn) {
     arrSause.forEach((item) => {
       item.disabled = true;
     });
-    totalPrise+= parseFloat(btn.getAttribute('data-price'));
+    totalPrise += parseFloat(btn.getAttribute("data-price"));
     orderPrise.innerText = totalPrise;
-     if(imageIndex == 4){
+    if (imageIndex == 4) {
       finalOrderButton.disabled = false;
-     }
+    }
+    finalOrderObject.sause = selectedSauseOrder.firstChild.textContent;
   });
- 
 }
 
 getOrderSause(sauceBtn1);
@@ -152,7 +154,6 @@ let ing1OrderPrice = 0;
 
 const arrIngredients1 = [ing1Btn1, ing1Btn2, ing1Btn3, ing1Btn4];
 
-
 // Получение первых ингредиентов в лист заказа
 function getOrderIndredient1(btn) {
   btn.addEventListener("click", () => {
@@ -162,9 +163,9 @@ function getOrderIndredient1(btn) {
     spanIngredient1.textContent = text + " ";
     selectedIngredient1Order.append(spanIngredient1);
 
-    btn.style.color = "blue";
+    btn.style.color = "yellow";
     ++ing1Counter;
-    console.log("ing1 counter "+ing1Counter);
+    console.log("ing1 counter " + ing1Counter);
     if (ing1Counter === 1) {
       pizzaImg.src = images[++imageIndex];
     }
@@ -174,17 +175,18 @@ function getOrderIndredient1(btn) {
         item.disabled = true;
       }
     });
-    ing1OrderPrice += parseFloat(btn.getAttribute('data-price'));
+    ing1OrderPrice += parseFloat(btn.getAttribute("data-price"));
     console.log(ing1OrderPrice);
 
-    totalPrise+= parseFloat(btn.getAttribute('data-price'));
+    totalPrise += parseFloat(btn.getAttribute("data-price"));
     orderPrise.innerText = totalPrise;
-    if(imageIndex == 4){
+    finalOrderObject.ingredient1 = finalOrderObject.ingredient1 + " " + text;
+    if (imageIndex == 4) {
       finalOrderButton.disabled = false;
-     }
+    }
   });
 }
-console.log("ing1 "+imageIndex);
+console.log("ing1 " + imageIndex);
 getOrderIndredient1(ing1Btn1);
 getOrderIndredient1(ing1Btn2);
 getOrderIndredient1(ing1Btn3);
@@ -210,7 +212,7 @@ function getOrderIndredient2(btn) {
     spanIngredient2.textContent = text + " ";
     selectedIngredient2Order.append(spanIngredient2);
 
-    btn.style.color = "blue";
+    btn.style.color = "yellow";
     ++ing2Counter;
     if (ing2Counter === 1) {
       pizzaImg.src = images[++imageIndex];
@@ -221,28 +223,29 @@ function getOrderIndredient2(btn) {
         item.disabled = true;
       }
     });
-    ing2OrderPrice += parseFloat(btn.getAttribute('data-price'));
 
-    totalPrise+= parseFloat(btn.getAttribute('data-price'));
+    ing2OrderPrice += parseFloat(btn.getAttribute("data-price"));
+    totalPrise += parseFloat(btn.getAttribute("data-price"));
     orderPrise.innerText = totalPrise;
-    if(imageIndex == 4){
+
+    finalOrderObject.ingredient2 = finalOrderObject.ingredient2 + " " + text;
+
+    if (imageIndex == 4) {
       finalOrderButton.disabled = false;
-     }
+    }
   });
 }
-console.log("Ing2 "+imageIndex);
+console.log("Ing2 " + imageIndex);
 getOrderIndredient2(ing2Btn1);
 getOrderIndredient2(ing2Btn2);
 getOrderIndredient2(ing2Btn3);
 getOrderIndredient2(ing2Btn4);
 
-
-
 // Удаление Ingredient1
 selectedIngredient1Order.addEventListener("click", () => {
-  selectedIngredient1Order.innerHTML = '';
+  selectedIngredient1Order.innerHTML = "";
   arrIngredients1.forEach((btn) => {
-    btn.style.color = "black"
+    btn.style.color = "yellow";
     btn.disabled = false;
   });
   pizzaImg.src = images[--imageIndex];
@@ -251,24 +254,39 @@ selectedIngredient1Order.addEventListener("click", () => {
   ing1OrderPrice = 0;
   orderPrise.innerText = totalPrise;
   finalOrderButton.disabled = true;
+  finalOrderObject.ingredient1 = "";
 });
+
 // Удаление Ingredient2
 selectedIngredient2Order.addEventListener("click", () => {
-    selectedIngredient2Order.innerHTML = '';
-    arrIngredients2.forEach((btn) => {
-      btn.style.color = "black";
-      btn.disabled = false;
-    });
-    pizzaImg.src = images[--imageIndex];
-    ing2Counter = 0;
-    totalPrise -= ing2OrderPrice;
-    ing2OrderPrice = 0;
-    orderPrise.innerText = totalPrise;
-    finalOrderButton.disabled = true;
+  selectedIngredient2Order.innerHTML = "";
+  arrIngredients2.forEach((btn) => {
+    btn.style.color = null;
+    btn.disabled = false;
   });
-  
-  // Финальная кнопка заказа
-  
-    // finalOrderButton.addEventListener(()=>{
-  
-    // })
+  pizzaImg.src = images[--imageIndex];
+  ing2Counter = 0;
+  totalPrise -= ing2OrderPrice;
+  ing2OrderPrice = 0;
+  orderPrise.innerText = totalPrise;
+  finalOrderButton.disabled = true;
+  finalOrderObject.ingredient2 = "";
+});
+
+let finalOrderObject = {
+  base: null,
+  ingredient1: [],
+  ingredient2: [],
+  sause: null,
+  price: null,
+};
+
+// Финальная кнопка заказа
+
+finalOrderButton.addEventListener("click", () => {
+  finalOrderObject.price = orderPrise.textContent + "$";
+  console.log(finalOrderObject);
+  alert("Thank you for your order ");
+  location.reload();
+});
+   
